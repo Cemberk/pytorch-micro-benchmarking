@@ -105,7 +105,7 @@ def benchmark(op_str, args):
             op(*op_args)
 
         # main iterations
-        with torch.autograd.profiler.profile(enabled=args.enable_profiling, use_cuda=args.use_gpu) as prof:
+        with with torch.profiler.profile() as prof: #autograd enabled=args.enable_profiling, use_cuda=args.use_gpu) as prof
             start_time = time_wrap(args.use_gpu)
             for _ in range(args.num_iters):
                 op(*op_args)
